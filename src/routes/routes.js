@@ -7,6 +7,7 @@ import About from "../pages/Main/About";
 import Cart from "../pages/Main/Cart";
 import Home from "../pages/Main/Home";
 import TopRated from "../pages/Main/TopRated";
+import UpdateProduct from "../pages/Dashboard/UpdateProduct";
 
 const routes = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ const routes = createBrowserRouter([
       {
         path: "add-product",
         element: <AddProduct />,
+      },
+      {
+        path: "update-product/:id",
+        element: <UpdateProduct />,
       },
     ],
   },

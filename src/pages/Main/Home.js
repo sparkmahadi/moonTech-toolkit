@@ -1,21 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import ProductCard from "../../components/ProductCard";
 import { useDispatch, useSelector } from "react-redux";
 import { toggle, toggleBrand } from "../../features/filter/filterSlice";
 import { getProducts } from './../../features/products/productsSlice';
 
 const Home = () => {
-  // const [products, setProducts] = useState([]);
   const dispatch = useDispatch();
   const filter = useSelector(state => state.filter);
   const { products, isLoading } = useSelector(state => state.products);
   const { stock, brands } = filter;
 
   useEffect(() => {
-    // fetch("https://moon-tech-server-wheat.vercel.app/products")
-    //   .then((res) => res.json())
-    //   .then((data) => setProducts(data.data));
-
     dispatch(getProducts());
   }, [dispatch]);
 
@@ -60,14 +55,14 @@ const Home = () => {
       <div className='mb-10 flex justify-end gap-5'>
         <button
           onClick={() => dispatch(toggle())}
-          className={`border px-3 py-2 rounded-full font-semibold ${activeClass} `}
+          className={`border px-3 py-2 rounded-full font-semibold ${stock ? activeClass : null}`}
         >
           In Stock
         </button>
-        <button onClick={() => dispatch(toggleBrand('amd'))} className={`border px-3 py-2 rounded-full font-semibold`}>
+        <button onClick={() => dispatch(toggleBrand('amd'))} className={`border px-3 py-2 rounded-full font-semibold ${brands.includes('amd') ? activeClass : null}`}>
           AMD
         </button>
-        <button onClick={() => dispatch(toggleBrand('intel'))} className={`border px-3 py-2 rounded-full font-semibold`}>
+        <button onClick={() => dispatch(toggleBrand('intel'))} className={`border px-3 py-2 rounded-full font-semibold ${brands.includes('intel') ? activeClass : null}`}>
           Intel
         </button>
       </div>

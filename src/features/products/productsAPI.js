@@ -12,3 +12,7 @@ export const postProduct = async (productData) => {
 export const deleteProduct = async (id) => {
     await axios.delete(`/product/${id}`)
 }
+
+export const updateProduct = async (updatedProduct) => {
+    await axios.patch(`/product/${updatedProduct._id}`, updatedProduct )
+}
